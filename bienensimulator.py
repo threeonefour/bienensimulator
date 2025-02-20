@@ -9,7 +9,7 @@
 import random
 import time
 import os
-clear = lambda: os.system('clear')
+clear = lambda: os.system('clear') #terminal - clear befehl spezifisch für linux, windows und mac systeme haben verschiedene andere verfahren
 
 xstock = 52
 ystock = 17
@@ -110,7 +110,7 @@ class Biene:
         self.ypos = y
         self.richtung = richtung
 
-    def flapflap(self, flapFlag):
+    def flapflap(self, flapFlag): # noch nicht verwendet, evtl. obsolet, flapFlag wird derzeit im gridComposer verwaltet
         if flapFlag < 1:
             flapFlag = 1
         else:
@@ -267,7 +267,7 @@ def startup(): # erzeugen aller benötigten listen, festlegen der startbienen
     for h in range(startBienen):
         bienenKader.append(Biene())
 
-    blumenLaden = []
+    blumenLaden = []   #aktuell fixer wert für die blumen, geplant ist ein dynamisches system dass blumen- und bienenpopulation balanciert
     for i in range(70):
         blumenLaden.append(Blume())
 
@@ -280,7 +280,7 @@ def startup(): # erzeugen aller benötigten listen, festlegen der startbienen
     
     return theGrid, bienenKader, blumenLaden, waben  
 
-def gridComposer(theGrid, blumenLaden, bienenKader):
+def gridComposer(theGrid, blumenLaden, bienenKader): # hier werden auf basis der vorherig bestimmten positions- und Statusdaten der bienen und blumen die entsprechenden visualisierungen im Grid erzeugt
 
     theGrid = []
     for j in range(35):
@@ -372,7 +372,6 @@ def main(theGrid, bienenKader, blumenLaden, waben):
     globalTick = 0
     while True:
         numberOfTheBees = len(bienenKader)
-        wabenVoll = 7 #ändern wenn implementiert!!
         for j in range(len(blumenLaden)):
            if blumenLaden[j].retireFlag == 1:
              blumenLaden[j] = Blume()
